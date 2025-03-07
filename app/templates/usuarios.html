@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários - Adote um Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Adote um Pet</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('views.index') }}">Início</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('auth.registro') }}">Registro</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="usuarios-list">
+            <h2>Lista de Usuários</h2>
+            {% if usuarios %}
+                <div class="usuarios-grid">
+                    {% for usuario in usuarios %}
+                        <div class="usuario-card">
+                            <h3>{{ usuario.nome }}</h3>
+                            <p><strong>Email:</strong> {{ usuario.email }}</p>
+                            <p><strong>Tipo:</strong> {{ usuario.tipo_usuario }}</p>
+                            <p><strong>Cidade:</strong> {{ usuario.cidade }}</p>
+                            <p><strong>Contato:</strong> {{ usuario.contato }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Nenhum usuário cadastrado.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Adote um Pet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
