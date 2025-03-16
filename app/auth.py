@@ -32,11 +32,11 @@ def registro():
         cidade = request.form.get('cidade')
         contato = request.form.get('contato')
 
-        usuario = Usuario.query.filter_by(email=email).first()
-        if usuario:
+        existing_usuario = Usuario.query.filter_by(email=email).first()
+        if existing_usuario:
             flash('Email já cadastrado.', 'danger')
         else:
-            novo_usuario = usuario(
+            novo_usuario = Usuario(
                 nome=nome,
                 email=email,
                 senha=generate_password_hash(senha, method='sha256'),
