@@ -6,8 +6,24 @@ from . import db
 views = Blueprint('views', __name__)
 
 @views.route('/')
-def index():
-    return render_template('index.html', user=current_user)
+@login_required
+def AdotePet():
+    return render_template('AdotePet.html', user=current_user)
+
+@views.route('/loja')
+@login_required
+def Loja():
+    return render_template('Loja.html', user=current_user)
+
+@views.route('/perfil')
+@login_required
+def Perfil():
+    return render_template('Perfil.html', user=current_user)
+
+@views.route('/Chat')
+@login_required
+def Chat():
+    return render_template('Chat.html', user=current_user)
 
 @views.route('/usuarios')
 @login_required

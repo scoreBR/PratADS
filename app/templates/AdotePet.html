@@ -12,14 +12,11 @@
             <h1>Adote um Pet</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('views.index') }}">Início</a></li>
-                    {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                        <li><a href="{{ url_for('auth.registro') }}">Registro</a></li>
-                    {% endif %}
+                    <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
+                    <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
+                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -48,7 +45,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Adote um Pet. Todos os direitos reservados.</p>
+            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
 </body>

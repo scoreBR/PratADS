@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adote um Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Adote um Pet</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
+                    <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
+                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="pets-list">
+            <h2>Pets Disponíveis para Adoção</h2>
+            {% if pets %}
+                <div class="pets-grid">
+                    {% for pet in pets %}
+                        <div class="pet-card">
+                            <h3>{{ pet.nome }}</h3>
+                            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                            <p><strong>Porte:</strong> {{ pet.porte }}</p>
+                            <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Nenhum pet disponível no momento.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

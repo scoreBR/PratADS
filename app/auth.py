@@ -16,7 +16,7 @@ def login():
         if usuario and check_password_hash(usuario.senha, senha):
             login_user(usuario)
             flash('Login realizado com sucesso!', 'success')
-            return redirect(url_for('views.index'))
+            return redirect(url_for('views.AdotePet'))
         else:
             flash('Email ou senha incorretos.', 'danger')
 
