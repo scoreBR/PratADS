@@ -62,6 +62,28 @@ def adicionar_pet():
 
     return render_template('adicionar_pet.html', user=current_user)
 
+@views.route('/adicionar_produto', methods=['GET', 'POST'])
+@login_required
+def adicionar_produto():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        descricao = request.form.get('descricao')
+        preco = request.form.get('preco')
+        categoria = request.form.get('categoria')
+
+        novo_produto = Produto(
+            nome=nome,
+            descricao=descricao,
+            preco=preco,
+            categoria=categoria
+        )
+        db.session.add(novo_produto)
+        db.session.commit()
+        flash('Produto adicionado com sucesso!', 'success')
+        return redirect(url_for('views.Loja'))
+
+    return render_template('adicionar_produto.html', user=current_user)
+
 @views.route('/api/pets', methods=['GET'])
 def get_pets():
     pets = Pet.query.all()

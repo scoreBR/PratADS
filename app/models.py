@@ -21,3 +21,10 @@ class Pet(db.Model):
     vacinacao = db.Column(db.String(100), nullable=True)
     localizacao = db.Column(db.String(100), nullable=False)
     doador_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+
+class Produto (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(100), nullable=False)
+    descricao = db.Column(db.String(100), nullable=False)
+    preco = db.Column(db.Float, nullable=False)
+    categoria = db.Column(db.String(100), nullable=False)
