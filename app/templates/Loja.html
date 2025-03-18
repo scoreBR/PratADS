@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Adote um Pet</h1>
+            <h1>WePet</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
@@ -24,7 +24,7 @@
 
     <main class="container">
         <section class="pets-list">
-            <h2>Pets Disponíveis para Adoção</h2>
+            <h2>Produtos para seu pet</h2>
             {% if pets %}
                 <div class="pets-grid">
                     {% for pet in pets %}
@@ -38,7 +38,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <p>Nenhum pet disponível no momento.</p>
+                <p>Nenhum produto disponível no momento.</p>
             {% endif %}
         </section>
     </main>
