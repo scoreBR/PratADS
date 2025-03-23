@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário - WePet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>WePet</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('views.AdotePet') }}">Adote um pet</a></li>
+                    <li><a href="{{ url_for('views.Loja') }}">Compre para seu pet</a></li>
+                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="usuario-perfil">
+            <div class="perfil-info">
+                <img src="{{ url_for('static', filename='images/default-user.png') }}" alt="Foto de perfil" class="perfil-foto">
+                <h2>{{ user.nome }}</h2>
+                <p><strong>Cidade:</strong> {{ user.cidade }}</p>
+                <p><strong>Contato:</strong> {{ user.contato }}</p>
+                <textarea class="perfil-descricao" placeholder="Descrição">Descrição</textarea>
+                <button class="btn">Editar</button>
+                <button class="btn">Salvar</button>
+            </div>
+        </section>
+
+        <section class="pets-list">
+            <h2>PETS</h2>
+            <div class="pets-grid">
+                {% for pet in user.pets %}
+                    <div class="pet-card">
+                        <img src="{{ pet.imagem_url }}" alt="{{ pet.nome }}">
+                    </div>
+                {% endfor %}
+                <div class="pet-card add-card">+</div>
+            </div>
+        </section>
+
+        <section class="produtos-list">
+            <h2>PRODUTOS</h2>
+            <div class="produtos-grid">
+                {% for produto in produtos %}
+                    <div class="produto-card">
+                        <img src="{{ produto.imagem_url }}" alt="{{ produto.titulo }}">
+                    </div>
+                {% endfor %}
+                <div class="produto-card add-card">+</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -87,7 +87,7 @@ nav ul li a {
     gap: 20px;
 }
 
-.pet-card, .usuario-card {
+.pet-card, .usuario-card, .produto-card {
     background-color: white;
     padding: 15px;
     border-radius: 5px;

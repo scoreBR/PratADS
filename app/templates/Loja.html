@@ -15,6 +15,7 @@
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
                     <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
                     <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                    <li><a href="{{ url_for('views.adicionar_produto') }}">Adicionar Produto</a></li>
                     <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
                     <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
                 </ul>
@@ -23,23 +24,9 @@
     </header>
 
     <main class="container">
-        <section class="pets-list">
+        <section class="produtos-list">
             <h2>Produtos para seu pet</h2>
-            {% if pets %}
-                <div class="pets-grid">
-                    {% for pet in pets %}
-                        <div class="pet-card">
-                            <h3>{{ pet.nome }}</h3>
-                            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
-                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
-                            <p><strong>Porte:</strong> {{ pet.porte }}</p>
-                            <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>Nenhum produto disponível no momento.</p>
-            {% endif %}
+            <div id="produtos-container" class="produtos-grid"></div>
         </section>
     </main>
 
@@ -48,5 +35,28 @@
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/produtos')
+                .then(response => response.json())
+                .then(produtos => {
+                    const produtosContainer = document.getElementById('produtos-container');
+                    produtos.forEach(produto => {
+                        const produtoCard = document.createElement('div');
+                        produtoCard.className = 'produto-card';
+                        produtoCard.innerHTML = `
+                            <h3>${produto.titulo}</h3>
+                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                            <p><strong>Categoria:</strong> ${produto.categoria}</p>
+                        `;
+                        produtosContainer.appendChild(produtoCard);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar os produtos:', error));
+        });
+    </script>
+
 </body>
 </html>

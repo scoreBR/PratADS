@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Pet - Adote um Pet</title>
+    <title>WePet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -13,19 +13,18 @@
             <nav>
                 <ul>
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section class="pet-form">
-            <h2>Adicionar Pet</h2>
-            <form method="POST" action="{{ url_for('views.adicionar_pet') }}">
+        <section class="produto-form">
+            <h2>Adicionar Produto</h2>
+            <form method="POST" action="{{ url_for('views.adicionar_produto') }}">
                 <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição:</label>

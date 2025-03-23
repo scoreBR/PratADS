@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from flask import jsonify
-from .models import Pet, Usuario
+from .models import Pet, Usuario, Produto
 
 from . import db
 
@@ -66,13 +66,13 @@ def adicionar_pet():
 @login_required
 def adicionar_produto():
     if request.method == 'POST':
-        nome = request.form.get('nome')
+        titulo = request.form.get('titulo')
         descricao = request.form.get('descricao')
         preco = request.form.get('preco')
         categoria = request.form.get('categoria')
 
         novo_produto = Produto(
-            nome=nome,
+            titulo=titulo,
             descricao=descricao,
             preco=preco,
             categoria=categoria
@@ -83,6 +83,12 @@ def adicionar_produto():
         return redirect(url_for('views.Loja'))
 
     return render_template('adicionar_produto.html', user=current_user)
+
+@views.route('/perfil', methods=['GET', 'POST'])
+@login_required
+def perfil():
+    
+    return render_template('perfil.html', user=current_user)
 
 @views.route('/api/pets', methods=['GET'])
 def get_pets():
@@ -96,3 +102,14 @@ def get_pets():
         'localizacao': pet.localizacao
     } for pet in pets]
     return jsonify(pets_list)
+
+@views.route('/api/produtos', methods=['GET'])
+def get_produtos():
+    produtos = Produto.query.all()
+    produtos_list = [{
+        'titulo': produto.titulo,
+        'descricao': produto.descricao,
+        'preco': produto.preco,
+        'categoria': produto.categoria,
+    } for produto in produtos]
+    return jsonify(produtos_list)
