@@ -1,0 +1,137 @@
+    /* Estilos gerais */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #F4F4F4;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    /* Cabeçalho */
+    header {
+        background-color: #F4A261;
+        padding: 15px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header h1 {
+        color: #FFF;
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-left: 20px;
+    }
+    
+    nav ul li a {
+        color: #FFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    /* Formulário de Registro */
+    .auth-form {
+        background: #FFF;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 50px auto;
+        text-align: center;
+    }
+    
+    .auth-form h2 {
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    
+    .form-group label {
+        display: block;
+        font-weight: bold;
+    }
+    
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCC;
+        border-radius: 5px;
+    }
+    
+    .btn {
+        background-color: #2A9D8F;
+        color: #FFF;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+    }
+    
+    .btn:hover {
+        background-color: #21867A;
+    }
+    
+    .auth-form p {
+        margin-top: 10px;
+    }
+    
+    .auth-form a {
+        color: #F4A261;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    /* Rodapé */
+    footer {
+        background-color: #8D6A5A;
+        color: #FFF;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: auto;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        header .container {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        nav ul {
+            margin-top: 10px;
+        }
+    
+        nav ul li {
+            margin: 0 10px;
+        }
+    }
+    

@@ -1,0 +1,165 @@
+    /* Estilos gerais */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #F4F4F4;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    /* Cabeçalho */
+    header {
+        background-color: #F4A261;
+        padding: 15px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header h1 {
+        color: #FFF;
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-left: 20px;
+    }
+    
+    nav ul li a {
+        color: #FFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    /* Perfil do Usuário */
+    .usuario-perfil {
+        background: #FFF;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .perfil-foto {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    
+    .perfil-descricao {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #CCC;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    
+    .btn {
+        background-color: #2A9D8F;
+        color: #FFF;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px 5px;
+    }
+    
+    .btn:hover {
+        background-color: #21867A;
+    }
+    
+    /* Seção de Pets e Produtos */
+    .pets-list, .produtos-list {
+        margin-top: 40px;
+        text-align: center;
+    }
+    
+    .pets-grid, .produtos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .pet-card, .produto-card {
+        background: #E9C46A;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+    }
+    
+    .pet-card img, .produto-card img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 5px;
+    }
+    
+    .add-card {
+        background-color: #2A9D8F;
+        color: #FFF;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .add-card:hover {
+        background-color: #21867A;
+    }
+    
+    /* Rodapé */
+    footer {
+        background-color: #8D6A5A;
+        color: #FFF;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: auto;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        header .container {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        nav ul {
+            margin-top: 10px;
+        }
+    
+        nav ul li {
+            margin: 0 10px;
+        }
+    }
+    

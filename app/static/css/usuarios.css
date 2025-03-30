@@ -1,0 +1,122 @@
+    /* Estilos gerais */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #F4F4F4;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    /* Cabeçalho */
+    header {
+        background-color: #F4A261;
+        padding: 15px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header h1 {
+        color: #FFF;
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+    }
+    
+    nav ul li {
+        margin-left: 20px;
+    }
+    
+    nav ul li a {
+        color: #FFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    /* Lista de Usuários */
+    .usuarios-list {
+        background: #FFF;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+    }
+    
+    .usuarios-list h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .usuarios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .usuario-card {
+        background: #E9C46A;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .usuario-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .usuario-card h3 {
+        color: #2A9D8F;
+        margin-bottom: 10px;
+    }
+    
+    .usuario-card p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+    
+    /* Rodapé */
+    footer {
+        background-color: #8D6A5A;
+        color: #FFF;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: auto;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        header .container {
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        nav ul {
+            margin-top: 10px;
+        }
+    
+        nav ul li {
+            margin: 0 10px;
+        }
+    }

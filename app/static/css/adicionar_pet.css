@@ -1,0 +1,156 @@
+/* Reset geral de margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #F4A261;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Formulário de Adicionar Pet */
+.pet-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 30px;
+    max-width: 600px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pet-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos campos de entrada */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #000;
+    outline: none;
+}
+
+/* Botão */
+.btn {
+    background-color: #2A9D8F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #21867A;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .pet-form {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+/* Rodapé */
+footer {
+    background-color: #8D6A5A;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
