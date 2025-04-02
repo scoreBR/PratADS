@@ -20,7 +20,7 @@ def Loja():
 @views.route('/perfil')
 @login_required
 def Perfil():
-    return render_template('Perfil.html', user=current_user)
+    return render_template('perfil.html', user=current_user)
 
 @views.route('/Chat')
 @login_required
