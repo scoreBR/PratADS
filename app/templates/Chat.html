@@ -1,53 +1,769 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adote um Pet</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Chat.css') }}">
+  <meta charset="UTF-8">
+  <title>WePet - Adoção de Cachorros</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: #ff8c00;
+      padding: 10px 20px;
+      border-bottom: 4px solid #e67300;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 15px 15px;
+    }
+
+    header nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    header nav a:hover {
+      background-color: #fff3e0;
+      color: #e67300;
+    }
+
+    .confete:hover {
+      background: #fff3e0;
+      color: #ff6600;
+      position: relative;
+    }
+
+    .confete:hover::after {
+      content: "🎉🎊";
+      position: absolute;
+      top: -10px;
+      right: -20px;
+    }
+
+    .container {
+      display: flex;
+      margin: 10px;
+    }
+
+    .sidebar {
+      width: 20%;
+      padding: 10px;
+      background: #fff;
+      border-radius: 15px;
+      margin: 5px;
+      height: 400px;
+      overflow-y: auto;
+    }
+
+    .content {
+      width: 60%;
+      padding: 10px;
+      background: #fff;
+      border-radius: 15px;
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .list li {
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .chat {
+      background: #eef;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 15px;
+      height: 120px;
+      overflow-y: auto;
+    }
+
+    footer {
+      background: #815c5cfe;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .sair {
+      color: #ffcccc;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left a {
+      margin-right: 10px;
+    }
+
+    /* Estilos dos cards de pets modernizados */
+    .pets-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      padding: 15px;
+    }
+
+    .pet-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+      border: 1px solid #eee;
+    }
+
+    .pet-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .pet-content {
+      padding: 15px;
+    }
+
+    .pet-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .pet-breed {
+      color: #ff8c00;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pet-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .pet-description {
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #555;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .doador-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .doador-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+      border: 2px solid #ff8c00;
+    }
+
+    .doador-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .doador-location {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .chat-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #ff8c00;
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .chat-button:hover {
+      background: #e67300;
+    }
+
+    .chat-button i {
+      margin-right: 8px;
+    }
+
+    /* Modal do Chat */
+    .chat-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-container {
+      background: white;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-header {
+      background: #ff8c00;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .pet-info-chat {
+      display: flex;
+      padding: 10px 15px;
+      background: #f9f9f9;
+      border-bottom: 1px solid #eee;
+    }
+
+    .pet-image-chat {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid #ff8c00;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      max-height: 50vh;
+      background: #f5f5f5;
+    }
+
+    .message {
+      max-width: 80%;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 18px;
+      position: relative;
+      word-break: break-word;
+    }
+
+    .received {
+      background: #ffffff;
+      color: #333;
+      align-self: flex-start;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .sent {
+      background: #ff8c00;
+      color: white;
+      margin-left: auto;
+    }
+
+    .message-time {
+      font-size: 11px;
+      color: #666;
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      background: #f9f9f9;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: #ff8c00;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+      background: #e67300;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .sidebar, .content {
+        width: auto;
+        height: auto;
+      }
+      
+      .pets-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Adote um Pet</h1>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
-                    <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
-                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
-                    <li><a href="{{ url_for('views.adicionar_produto') }}">Adicionar Produto</a></li>
-                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container">
-        <section class="pets-list">
-            <h2>Pets Disponíveis para Adoção</h2>
-            {% if pets %}
-                <div class="pets-grid">
-                    {% for pet in pets %}
-                        <div class="pet-card">
-                            <h3>{{ pet.nome }}</h3>
-                            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
-                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
-                            <p><strong>Porte:</strong> {{ pet.porte }}</p>
-                            <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p>Nenhum pet disponível no momento.</p>
-            {% endif %}
-        </section>
-    </main>
+  <header>
+    <div class="header-left">
+      <nav>
+        <a href="https://wepett-8f064e4d70fc.herokuapp.com">Início</a>
+        <a href="https://wepett-8f064e4d70fc.herokuapp.com/adicionar_pet">Adicionar Pet</a>
+        <a href="https://wepett-8f064e4d70fc.herokuapp.com/loja" class="confete">Loja</a>
+        <a href="https://wepett-8f064e4d70fc.herokuapp.com/perfil">perfil</a>
+      </nav>
+    </div>
+    <nav>
+      <a href="#">Adote um Pet</a>
+    </nav>
+  </header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
+  <div class="container">
+    <div class="sidebar">
+      <h3>Doadores Online</h3>
+      <ul class="list" id="doadores-online">
+        <!-- Lista de doadores online será preenchida por JS -->
+      </ul>
+    </div>
+
+    <div class="content">
+      <h2>Pets Disponíveis para Adoção</h2>
+      <div class="pets-container" id="pets-container">
+        <!-- Cards de pets serão adicionados dinamicamente aqui -->
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h3>Adotantes Online</h3>
+      <ul class="list" id="adotantes-online">
+        <!-- Lista de adotantes online será preenchida por JS -->
+      </ul>
+    </div>
+  </div>
+
+  <div class="chat">
+    <strong>Chat da Comunidade:</strong><br>
+    <div id="community-chat">
+      <!-- Mensagens do chat comunitário serão adicionadas aqui -->
+    </div>
+  </div>
+
+  <!-- Modal do Chat -->
+  <div class="chat-modal" id="chat-modal">
+    <div class="chat-container">
+      <div class="chat-header">
+        <button class="close-chat" id="close-chat">&times;</button>
+        <h3 id="chat-title">Chat de Adoção</h3>
+      </div>
+      
+      <div class="pet-info-chat" id="pet-info-chat">
+        <!-- Informações do pet no chat -->
+      </div>
+      
+      <div class="chat-messages" id="chat-messages">
+        <!-- Mensagens serão adicionadas aqui -->
+      </div>
+      
+      <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off">
+        <button id="send-button">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="#" class="" id="logout-btn"></p>
+    <p>Pets Disponíveis para Adoção - <a href="#">Voltar</a></p>
+    <p><strong>WePet:</strong> Conectando doadores e adotantes desde 2025</p>
+    <p>© 2025 WePet. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // Dados dos pets (simulando um banco de dados)
+    const petsData = [
+      {
+        id: 1,
+        name: "Rex",
+        breed: "Arivalat",
+        age: 2,
+        gender: "Macho",
+        vaccinated: true,
+        neutered: true,
+        description: "Rex é um adorável cão da raça Arivalat, extremamente dócil e brincalhão. Adora crianças e se dá bem com outros animais.",
+        image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ft1.ea.ltmcdn.com%2Fpt%2Frazas%2F5%2F3%2F7%2Fvira-lata-caramelo_735_0_orig.jpg&f=1&nofb=1&ipt=77478ccbf4ff64f3ed6ee017da6bc2ac9d0973ed991021018c2186eb66e233c1",
+        donor: {
+          name: "Maria Silva",
+          avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+          location: "São Paulo/SP",
+          rating: 4.8,
+          online: true
+        }
+      },
+      {
+        id: 2,
+        name: "Luna",
+        breed: "SRD",
+        age: 1,
+        gender: "Fêmea",
+        vaccinated: true,
+        neutered: false,
+        description: "Luna é uma fêmea SRD muito carinhosa e tranquila. Ideal para apartamentos.",
+        image: "https://noticiasdemogi.com.br/wp-content/uploads/2022/05/cachorro-adocao.jpeg",
+        donor: {
+          name: "Carlos Oliveira",
+          avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+          location: "Rio de Janeiro/RJ",
+          rating: 4.5,
+          online: true
+        }
+      },
+      {
+        id: 3,
+        name: "Thor",
+        breed: "Pastor Alemão",
+        age: 3,
+        gender: "Macho",
+        vaccinated: true,
+        neutered: true,
+        description: "Thor é um Pastor Alemão muito inteligente e protetor. Já treinado e com comandos básicos.",
+        image: "https://www.petelegante.com.br/media/dicas/ado%C3%A7%C3%A3o-de-cachorro-filhote.jpg",
+        donor: {
+          name: "Ana Paula",
+          avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+          location: "Belo Horizonte/MG",
+          rating: 4.9,
+          online: false
+        }
+      },
+      {
+        id: 4,
+        name: "Mel",
+        breed: "Golden Retriever",
+        age: 4,
+        gender: "Fêmea",
+        vaccinated: true,
+        neutered: true,
+        description: "Mel é uma Golden Retriever super amorosa e brincalhona. Adora água e passeios longos.",
+        image: "https://www.tribunapr.com.br/wp-content/uploads/2023/05/01151358/vira-lata-caramelo-AdobeStock-970x550.jpg",
+        donor: {
+          name: "João Pedro",
+          avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+          location: "Curitiba/PR",
+          rating: 4.7,
+          online: true
+        }
+      }
+    ];
+
+    // Dados de usuários online (simulação)
+    const onlineUsers = {
+      doadores: [
+        { name: "Maria Silva", pet: "Rex", online: true },
+        { name: "Carlos Oliveira", pet: "Luna", online: true },
+        { name: "João Pedro", pet: "Mel", online: true }
+      ],
+      adotantes: [
+        { name: "Ana Beatriz", online: true },
+        { name: "Lucas Martins", online: true },
+        { name: "Fernanda Costa", online: true },
+        { name: "Pedro Henrique", online: false }
+      ]
+    };
+
+    // Mensagens do chat comunitário (simulação)
+    const communityMessages = [
+      { user: "João", text: "Alguém disponível para apresentar a Mel?", time: "10:30" },
+      { user: "Maria Silva", text: "Claro! Vamos conversar.", time: "10:32" },
+      { user: "Carlos", text: "A Luna está disponível para visita neste final de semana.", time: "11:15" },
+      { user: "Ana", text: "Estou interessada no Thor, ele é bom com gatos?", time: "11:45" }
+    ];
+
+    // Variáveis para controle do chat
+    let currentChatPetId = null;
+    const chatModal = document.getElementById('chat-modal');
+    const closeChatButton = document.getElementById('close-chat');
+    const petsContainer = document.getElementById('pets-container');
+    const chatMessages = document.getElementById('chat-messages');
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const petInfoChat = document.getElementById('pet-info-chat');
+    const doadoresOnlineList = document.getElementById('doadores-online');
+    const adotantesOnlineList = document.getElementById('adotantes-online');
+    const communityChat = document.getElementById('community-chat');
+
+    // Função para renderizar os cards de pets
+    function renderPets() {
+      petsContainer.innerHTML = '';
+      
+      petsData.forEach(pet => {
+        const petCard = document.createElement('div');
+        petCard.className = 'pet-card';
+        petCard.innerHTML = `
+          <img src="${pet.image}" alt="${pet.name}" class="pet-image">
+          <div class="pet-content">
+            <h2 class="pet-name">${pet.name}</h2>
+            <span class="pet-breed">${pet.breed}</span>
+            
+            <div class="pet-info">
+              <span><i class="fas fa-${pet.gender === 'Macho' ? 'mars' : 'venus'}"></i> ${pet.gender}</span>
+              <span><i class="fas fa-birthday-cake"></i> ${pet.age} ano${pet.age !== 1 ? 's' : ''}</span>
+              <span><i class="fas fa-shield-alt"></i> ${pet.vaccinated ? 'Vacinado' : 'Não vacinado'}</span>
+            </div>
+            
+            <p class="pet-description">${pet.description}</p>
+            
+            <div class="doador-info">
+              <img src="${pet.donor.avatar}" alt="${pet.donor.name}" class="doador-avatar">
+              <div>
+                <div class="doador-name">${pet.donor.name}</div>
+                <div class="doador-location">${pet.donor.location}</div>
+                <div><i class="fas fa-${pet.donor.online ? 'circle online' : 'circle offline'}" style="color: ${pet.donor.online ? '#4CAF50' : '#999'}; font-size: 10px;"></i> ${pet.donor.online ? 'Online' : 'Offline'}</div>
+              </div>
+            </div>
+            
+            <button class="chat-button" data-pet-id="${pet.id}" ${!pet.donor.online ? 'disabled style="background: #ccc; cursor: not-allowed;"' : ''}>
+              <i class="fas fa-comments"></i> ${pet.donor.online ? 'Falar com o doador' : 'Doador offline'}
+            </button>
+          </div>
+        `;
+        
+        petsContainer.appendChild(petCard);
+      });
+      
+      // Adicionar eventos aos botões de chat
+      document.querySelectorAll('.chat-button').forEach(button => {
+        if (!button.disabled) {
+          button.addEventListener('click', function() {
+            const petId = parseInt(this.getAttribute('data-pet-id'));
+            openChat(petId);
+          });
+        }
+      });
+    }
+
+    // Função para renderizar usuários online
+    function renderOnlineUsers() {
+      doadoresOnlineList.innerHTML = '';
+      adotantesOnlineList.innerHTML = '';
+      
+      // Doadores online
+      onlineUsers.doadores.filter(d => d.online).forEach(doador => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="fas fa-circle" style="color: #4CAF50; font-size: 10px;"></i> ${doador.name} (${doador.pet})`;
+        doadoresOnlineList.appendChild(li);
+      });
+      
+      // Adotantes online
+      onlineUsers.adotantes.filter(a => a.online).forEach(adotante => {
+        const li = document.createElement('li');
+        li.innerHTML = `<i class="fas fa-circle" style="color: #4CAF50; font-size: 10px;"></i> ${adotante.name}`;
+        adotantesOnlineList.appendChild(li);
+      });
+    }
+
+    // Função para renderizar chat comunitário
+    function renderCommunityChat() {
+      communityChat.innerHTML = '';
+      
+      communityMessages.forEach(msg => {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${msg.user}:</strong> ${msg.text} <span style="color: #777; font-size: 12px;">${msg.time}</span>`;
+        communityChat.appendChild(div);
+      });
+    }
+
+    // Função para abrir o chat
+    function openChat(petId) {
+      const pet = petsData.find(p => p.id === petId);
+      if (!pet) return;
+      
+      currentChatPetId = petId;
+      
+      // Atualizar informações no chat
+      document.getElementById('chat-title').textContent = `Chat sobre ${pet.name}`;
+      
+      petInfoChat.innerHTML = `
+        <img src="${pet.image}" alt="${pet.name}" class="pet-image-chat">
+        <div>
+          <h3>${pet.name} - ${pet.breed}</h3>
+          <p>${pet.gender}, ${pet.age} ano${pet.age !== 1 ? 's' : ''}, ${pet.vaccinated ? 'vacinado' : 'não vacinado'}</p>
+          <p><i class="fas fa-user"></i> Doador: ${pet.donor.name}</p>
         </div>
-    </footer>
+      `;
+      
+      // Limpar mensagens anteriores
+      chatMessages.innerHTML = '';
+      
+      // Adicionar mensagem inicial simulada
+      addMessage(`Olá! Estou interessado no ${pet.name}. Poderia me contar mais sobre ele?`, true, 'Você');
+      
+      // Simular resposta após 1 segundo
+      setTimeout(() => {
+        const responses = [
+          `Oi! Claro, o ${pet.name} é ${pet.description.toLowerCase()}`,
+          `Olá! Sim, o ${pet.name} está disponível para adoção. Gostaria de marcar uma visita?`,
+          `Oi! O ${pet.name} é muito ${pet.age > 2 ? 'calmo' : 'ativo'}. ${pet.description}`,
+          `Olá! O ${pet.name} é perfeito para ${pet.breed === 'Arivalat' ? 'famílias' : 'pessoas ativas'}. Posso te contar mais.`
+        ];
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        addMessage(randomResponse, false, pet.donor.name);
+      }, 1000);
+      
+      // Mostrar o modal
+      chatModal.style.display = 'flex';
+    }
+
+    // Função para fechar o chat
+    function closeChat() {
+      chatModal.style.display = 'none';
+      currentChatPetId = null;
+    }
+
+    // Função para adicionar mensagem ao chat
+    function addMessage(text, isSent, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
+      
+      messageDiv.innerHTML = `
+        ${text}
+        <div class="message-time">${sender} - ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+      `;
+      
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Função para enviar mensagem
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (message && currentChatPetId) {
+        const pet = petsData.find(p => p.id === currentChatPetId);
+        
+        // Adicionar mensagem do usuário
+        addMessage(message, true, 'Você');
+        messageInput.value = '';
+        
+        // Simular resposta do doador
+        setTimeout(() => {
+          const responses = [
+            "Podemos marcar para você conhecer o pet?",
+            "Qual seu horário disponível para uma visita?",
+            "O pet é ótimo com crianças e outros animais.",
+            "Ele já está acostumado a passear de coleira.",
+            "Você tem outras dúvidas sobre o pet?"
+          ];
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+          addMessage(randomResponse, false, pet.donor.name);
+        }, 1000 + Math.random() * 2000);
+      }
+    }
+
+    // Event Listeners
+    closeChatButton.addEventListener('click', closeChat);
+    sendButton.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    // Fechar modal ao clicar fora
+    chatModal.addEventListener('click', function(e) {
+      if (e.target === chatModal) {
+        closeChat();
+      }
+    });
+    
+    // Botão de logout
+    document.getElementById('logout-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Você foi desconectado. Redirecionando para a página inicial...');
+      // Aqui você redirecionaria para a página de login
+    });
+
+    // Inicializar a página
+    renderPets();
+    renderOnlineUsers();
+    renderCommunityChat();
+  </script>
 </body>
 </html>
