@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Adote um Pet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Adote um Pet</h1>
+            <h1>WePet</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
@@ -20,25 +21,56 @@
     </header>
 
     <main class="container">
-        <section class="auth-form">
-            <h2>Login</h2>
-            <form method="POST" action="{{ url_for('auth.login') }}">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+
+        <div class="hero">
+            <section >
+                <div class="collage">
+                <img src="{{ url_for('static', filename='img/banner-cachorros.jpg') }}" alt="Animais" />
                 </div>
-                <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
-                </div>
-                <button type="submit" class="btn">Entrar</button>
-            </form>
-            <p>Não tem uma conta? <a href="{{ url_for('auth.registro') }}">Registre-se aqui</a>.</p>
-        </section>
+            </section>
+
+            <section class="auth-form">
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    <h2>Bem-vindo!</h2>
+                    <p>Faça login para acessar a plataforma:</p>
+                    <div class="form-group">
+                        <input type="email" id="email"  placeholder="E-mail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="senha" placeholder="Senha" name="senha" required>
+                    </div>
+                    <button type="submit" class="btn">Entrar</button>
+                </form>
+                <p>Não tem uma conta? <a href="{{ url_for('auth.registro') }}">Registre-se aqui</a>.</p>
+            </section>
+        </div>
+
+        <section class="pets-grid">
+            <h2>Pets Disponíveis para Adoção</h2>
+            <div class="grid">
+              <div class="pet-card">
+                <img src="{{ url_for('static', filename='img/card-01.jpg') }}" alt="Pet 1" />
+                <p>Rex - 2 anos</p>
+              </div>
+              <div class="pet-card">
+                <img src="{{ url_for('static', filename='img/card-02.jpg') }}" alt="Pet 2" />
+                <p>Balto - 1 ano</p>
+              </div>
+              <div class="pet-card">
+                <img src="{{ url_for('static', filename='img/card-03.jpg') }}" alt="Pet 3" />
+                <p>Bolinha - 3 anos</p>
+              </div>
+              <div class="pet-card">
+                <img src="{{ url_for('static', filename='img/card-04.jpg') }}" alt="Pet 4" />
+                <p>Chico - 4 meses</p>
+              </div>
+            </div>
+          </section>
+        
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container-footer">
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
