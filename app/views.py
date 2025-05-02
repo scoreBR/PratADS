@@ -95,7 +95,6 @@ def perfil():
         # Atualiza os dados do usuário
         current_user.cidade = cidade
         current_user.contato = contato
-        current_user.descricao = descricao
 
         db.session.commit()
         flash('Perfil atualizado com sucesso!', 'success')
