@@ -9,7 +9,6 @@ class Usuario(db.Model, UserMixin):
     tipo_usuario = db.Column(db.String(50), nullable=False)
     cidade = db.Column(db.String(100), nullable=True)
     contato = db.Column(db.String(100), nullable=True)
-    descricao = db.Column(db.Text, nullable=True)
     pets = db.relationship('Pet', backref='doador', lazy=True)
 
 class Pet(db.Model):
