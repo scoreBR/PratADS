@@ -87,13 +87,27 @@ def adicionar_produto():
 @views.route('/perfil', methods=['GET', 'POST'])
 @login_required
 def perfil():
-    
+    if request.method == 'POST':
+        cidade = request.form.get('cidade')
+        contato = request.form.get('contato')
+        descricao = request.form.get('descricao')
+
+        # Atualiza os dados do usuário
+        current_user.cidade = cidade
+        current_user.contato = contato
+        current_user.descricao = descricao
+
+        db.session.commit()
+        flash('Perfil atualizado com sucesso!', 'success')
+        return redirect(url_for('views.perfil'))
+
     return render_template('perfil.html', user=current_user)
 
 @views.route('/api/pets', methods=['GET'])
 def get_pets():
     pets = Pet.query.all()
     pets_list = [{
+        'id': pet.id,
         'nome': pet.nome,
         'idade': pet.idade,
         'tipo': pet.tipo,
@@ -107,9 +121,22 @@ def get_pets():
 def get_produtos():
     produtos = Produto.query.all()
     produtos_list = [{
+        'id': produto.id,
         'titulo': produto.titulo,
         'descricao': produto.descricao,
         'preco': produto.preco,
         'categoria': produto.categoria,
     } for produto in produtos]
     return jsonify(produtos_list)
+
+@views.route('/pet/<int:pet_id>', methods=['GET'])
+@login_required
+def detalhes_pet(pet_id):
+    pet = Pet.query.get_or_404(pet_id)
+    return render_template('DetalhesPet.html', pet=pet, user=current_user)
+
+@views.route('/produto/<int:produto_id>', methods=['GET'])
+@login_required
+def detalhes_produto(produto_id):
+    produto = Produto.query.get_or_404(produto_id)
+    return render_template('DetalhesProduto.html', produto=produto, user=current_user)

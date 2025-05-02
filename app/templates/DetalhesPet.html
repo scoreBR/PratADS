@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/AdotePet.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Detalhes do Pet</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="pet-details">
+            <h2>{{ pet.nome }}</h2>
+            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+            <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
+            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+            <p><strong>Porte:</strong> {{ pet.porte }}</p>
+            <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
+            <p><strong>Vacinação:</strong> {{ pet.vacinacao or 'Não informado' }}</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

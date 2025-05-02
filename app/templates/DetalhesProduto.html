@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Loja.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Detalhes do Produto</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="produto-details">
+            <h2>{{ produto.titulo }}</h2>
+            <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+            <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+            <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

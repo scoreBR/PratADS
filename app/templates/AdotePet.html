@@ -42,24 +42,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('/api/pets')
-                .then(response => response.json())
-                .then(pets => {
-                    const petsContainer = document.getElementById('pets-container');
-                    pets.forEach(pet => {
-                        const petCard = document.createElement('div');
-                        petCard.className = 'pet-card';
-                        petCard.innerHTML = `
-                            <h3>${pet.nome}</h3>
-                            <p><strong>Idade:</strong> ${pet.idade} anos</p>
-                            <p><strong>Tipo:</strong> ${pet.tipo}</p>
-                            <p><strong>Raça:</strong> ${pet.raca}</p>
-                            <p><strong>Porte:</strong> ${pet.porte}</p>
-                            <p><strong>Localização:</strong> ${pet.localizacao}</p>
-                        `;
-                        petsContainer.appendChild(petCard);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar os pets:', error));
+            .then(response => response.json())
+            .then(pets => {
+                const petsContainer = document.getElementById('pets-container');
+                pets.forEach(pet => {
+                    const petCard = document.createElement('div');
+                    petCard.className = 'pet-card';
+                    petCard.innerHTML = `
+                        <h3>${pet.nome}</h3>
+                        <p><strong>Idade:</strong> ${pet.idade} anos</p>
+                        <p><strong>Tipo:</strong> ${pet.tipo}</p>
+                        <p><strong>Raça:</strong> ${pet.raca}</p>
+                        <a href="/pet/${pet.id}" class="btn">Ver Detalhes</a>
+                    `;
+                    petsContainer.appendChild(petCard);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os pets:', error));
         });
     </script>
 </body>

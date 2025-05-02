@@ -39,22 +39,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('/api/produtos')
-                .then(response => response.json())
-                .then(produtos => {
-                    const produtosContainer = document.getElementById('produtos-container');
-                    produtos.forEach(produto => {
-                        const produtoCard = document.createElement('div');
-                        produtoCard.className = 'produto-card';
-                        produtoCard.innerHTML = `
-                            <h3>${produto.titulo}</h3>
-                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
-                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
-                            <p><strong>Categoria:</strong> ${produto.categoria}</p>
-                        `;
-                        produtosContainer.appendChild(produtoCard);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar os produtos:', error));
+            .then(response => response.json())
+            .then(produtos => {
+                const produtosContainer = document.getElementById('produtos-container');
+                produtos.forEach(produto => {
+                    const produtoCard = document.createElement('div');
+                    produtoCard.className = 'produto-card';
+                    produtoCard.innerHTML = `
+                        <h3>${produto.titulo}</h3>
+                        <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                        <a href="/produto/${produto.id}" class="btn">Ver Detalhes</a>
+                    `;
+                    produtosContainer.appendChild(produtoCard);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar os produtos:', error));
         });
     </script>
 
