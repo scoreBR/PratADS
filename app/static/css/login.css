@@ -167,7 +167,7 @@ nav a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  padding: 3rem 2rem;
+  padding: 0rem 4rem;
 }
 
 .collage {
@@ -179,7 +179,7 @@ nav a {
 .collage img {
   width: 100%;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
 }
 
 .login-box {
@@ -220,6 +220,9 @@ nav a {
   padding: 2rem;
   background-color: #fff;
   border-radius: 10px;
+  margin-top: -15px;
+  z-index: 10;
+  position: relative;
 }
 
 .pets-grid h2 {
@@ -255,7 +258,7 @@ nav a {
 }
 
 footer {
-  background-color: #2e8b57;
+  background-color:  #282A35;
   color: white;
   text-align: center;
   padding: 1rem;
@@ -266,6 +269,7 @@ footer {
   .hero {
     flex-direction: column;
     text-align: center;
+    padding: 0rem 3rem;
   }
 
   .login-box {
@@ -275,5 +279,9 @@ footer {
   .container {
     width: 100%;
     padding: 0;
+  }
+
+  .auth-form {
+    margin: -150px auto 50px;
   }
 }

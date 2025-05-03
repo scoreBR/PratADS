@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Detalhes do Pet</h1>
+            <h1>🐾WePet</h1>
             <nav>
                 <ul>
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
@@ -20,6 +20,7 @@
     </header>
 
     <main class="container">
+        <h1 class="title">Detalhes do Pet</h1>
         <section class="pet-details">
             <h2>{{ pet.nome }}</h2>
             <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
