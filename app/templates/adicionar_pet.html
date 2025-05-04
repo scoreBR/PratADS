@@ -23,7 +23,7 @@
     <main class="container">
         <section class="pet-form">
             <h2>Adicionar Pet</h2>
-            <form method="POST" action="{{ url_for('views.adicionar_pet') }}">
+            <form method="POST" action="{{ url_for('views.adicionar_pet') }}" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
@@ -55,6 +55,10 @@
                 <div class="form-group">
                     <label for="localizacao">Localização:</label>
                     <input type="text" id="localizacao" name="localizacao" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" id="imagem" name="imagem" accept="image/*">
                 </div>
                 <button type="submit" class="btn">Adicionar Pet</button>
             </form>

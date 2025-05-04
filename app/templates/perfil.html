@@ -24,7 +24,7 @@
     <main class="container">
         <section class="usuario-perfil">
             <div class="perfil-info">
-                <img src="{{ url_for('static', filename='images/default-user.png') }}" alt="Foto de perfil" class="perfil-foto">
+                <img src="{{ url_for('static', filename=user.imagem_url) }}" alt="Foto de perfil" class="perfil-foto">
                 <h2>{{ user.nome }}</h2>
                 <p><strong>Cidade:</strong> {{ user.cidade }}</p>
                 <p><strong>Contato:</strong> {{ user.contato }}</p>
