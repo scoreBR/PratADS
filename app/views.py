@@ -139,3 +139,15 @@ def detalhes_pet(pet_id):
 def detalhes_produto(produto_id):
     produto = Produto.query.get_or_404(produto_id)
     return render_template('DetalhesProduto.html', produto=produto, user=current_user)
+
+@views.route('/atualizar_descricao', methods=['POST'])
+@login_required
+def atualizar_descricao():
+    descricao = request.form.get('descricao')
+    if descricao:
+        current_user.descricao = descricao
+        db.session.commit()
+        flash('Descrição atualizada com sucesso!', 'success')
+    else:
+        flash('A descrição não pode estar vazia.', 'danger')
+    return redirect(url_for('views.Perfil'))
