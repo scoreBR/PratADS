@@ -6,19 +6,27 @@
     <title>Login - Adote um Pet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>🐾WePet</h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
-                <ul>
+                <ul id="nav-menu">
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
-                    <li><a href="{{ url_for('auth.registro') }}">Registro</a></li>
+                    <li><a href="{{ url_for('auth.registro') }}">Cadastrar</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <main class="container">
 
@@ -41,7 +49,7 @@
                     </div>
                     <button type="submit" class="btn">Entrar</button>
                 </form>
-                <p>Não tem uma conta? <a href="{{ url_for('auth.registro') }}">Registre-se aqui</a>.</p>
+                <p>Não tem uma conta? <a href="{{ url_for('auth.registro') }}">Cadastre-se aqui</a>.</p>
             </section>
         </div>
 
@@ -74,5 +82,7 @@
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
+    
+    <script> menuMobile()</script>
 </body>
 </html>

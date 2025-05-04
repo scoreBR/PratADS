@@ -6,13 +6,19 @@
     <title>Adote um Pet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/AdotePet.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>🐾WePet</h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
-                <ul>
+                <ul id="nav-menu">
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
                     <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
                     <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
@@ -24,6 +30,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <main class="container">
         <section class="pets-list">
@@ -61,6 +69,8 @@
             })
             .catch(error => console.error('Erro ao carregar os pets:', error));
         });
+
+        menuMobile()
     </script>
 </body>
 </html>

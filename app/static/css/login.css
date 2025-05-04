@@ -1,5 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #f4f4f4;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  background-color: #f2fdf2;
   color: #333;
   display: flex;
   flex-direction: column;
@@ -13,24 +21,33 @@ body {
   padding: 20px;
 }
 
-/* Cabeçalho */
+/* Cabeçalho e Menu */
 header {
+  background-color: #2e8b57;
+  color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 20px;
 }
 
 header h1 {
   color: #fff;
+  font-size: 1.5rem;
 }
 
+/* Estilos para o menu de navegação */
 nav ul {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 
 nav ul li {
@@ -41,133 +58,51 @@ nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s;
 }
 
-/* Formulário de Login */
-.auth-form {
-  background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 50px auto;
-  text-align: center;
+nav ul li a:hover {
+  color: #f2fdf2;
 }
 
-.auth-form h2 {
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.btn {
-  background-color: #2a9d8f;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: #21867a;
-}
-
-.auth-form p {
-  margin-top: 10px;
-}
-
-.auth-form a {
-  color: #2e8b57;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Rodapé */
-footer {
-  color: #fff;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: auto;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  header .container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav ul {
-    margin-top: 10px;
-  }
-
-  nav ul li {
-    margin: 0 10px;
-  }
-
-  header {
-    padding-bottom: 1.6rem;
-  }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-  line-height: 1.6;
+header > div > nav > ul > li:nth-child(2) {
+  border: 2px solid #fff;
+  border-radius: 25px;
+  padding: 5px 10px;
   background-color: #f2fdf2;
 }
 
-header {
-  background-color: #2e8b57;
-  color: #fff;
-  display: flex;
+header > div > nav > ul > li:nth-child(2) > a {
+  color: #2e8b57;
+}
+
+/* Botão de menu hambúrguer */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 200;
 }
 
-header h1 {
-  font-size: 1.5rem;
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: bold;
-}
-
+/* Conteúdo principal */
 .hero {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  padding: 0rem 4rem;
+  padding: 2rem 4rem;
 }
 
 .collage {
@@ -179,48 +114,71 @@ nav a {
 .collage img {
   width: 100%;
   border-radius: 12px;
-  /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
 }
 
-.login-box {
+/* Formulário de Login */
+.auth-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
   flex: 1;
   min-width: 300px;
-  max-width: 400px;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-box h2 {
-  margin-bottom: 1rem;
-  color: #2e8b57;
+.auth-form h2 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.login-box input {
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
-.login-box button {
-  width: 100%;
+.btn {
   background-color: #2e8b57;
-  color: white;
-  padding: 10px;
+  color: #fff;
   border: none;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  width: 100%;
   font-weight: bold;
 }
 
+.btn:hover {
+  background-color: #21867a;
+}
+
+.auth-form p {
+  margin: 15px 0 5px;
+}
+
+.auth-form a {
+  color: #2e8b57;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Seção de Pets */
 .pets-grid {
   padding: 2rem;
   background-color: #fff;
   border-radius: 10px;
-  margin-top: -15px;
+  margin-top: -50px;
   z-index: 10;
   position: relative;
 }
@@ -257,31 +215,103 @@ nav a {
   color: #333;
 }
 
+/* Rodapé */
 footer {
-  background-color:  #282A35;
+  background-color: #282a35;
   color: white;
   text-align: center;
   padding: 1rem;
-  margin-top: 2rem;
+  margin-top: auto;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 0rem 3rem;
-  }
-
-  .login-box {
-    margin-top: 2rem;
+  .menu-toggle {
+    display: flex;
+    margin-left: 178px;
   }
 
   .container {
-    width: 100%;
     padding: 0;
   }
 
+  nav ul {
+    position: fixed;
+    flex-direction: column;
+    background-color: #2e8b57;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    padding-top: 80px;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  header > div > nav > ul > li:nth-child(2) {
+    border-radius: 5px;
+    width: calc(100% - 40px);
+    margin: 10px 20px;
+    text-align: center;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .collage {
+    margin-bottom: 20px;
+  }
+
   .auth-form {
+    width: 100%;
     margin: -150px auto 50px;
+    padding: 20px;
+  }
+
+  .pets-grid {
+    margin-top: 0;
+  }
+
+  /* Estilos para menu hambúrguer ativo */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Overlay para quando o menu estiver aberto */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: none;
+  }
+
+  .menu-overlay.active {
+    display: block;
   }
 }

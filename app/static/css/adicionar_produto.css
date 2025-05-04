@@ -19,9 +19,12 @@ body {
 
 /* Cabeçalho */
 header {
-  background-color: #2e8b57;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   color: white;
-  text-align: center;
+  background-color: #2e8b57;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header .container {
@@ -35,7 +38,6 @@ nav ul {
   list-style: none;
   padding: 0;
   display: flex;
-  justify-content: center;
   gap: 15px;
 }
 
@@ -47,6 +49,40 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
 }
 
 /* Formulário de adicionar produto */
@@ -111,5 +147,46 @@ footer {
 @media (max-width: 600px) {
   .produto-form {
     width: 90%;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: 160px;
+  }
+
+  nav ul {
+    position: fixed;
+    flex-direction: column;
+    background-color: #2e8b57;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    padding-top: 80px;
+    transition: right 0.3s ease;
+    align-items: flex-start;
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  /* Animação do botão hambúrguer */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
   }
 }

@@ -5,19 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Pet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/AdotePet.css') }}">
+    <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>🐾WePet</h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
-                <ul>
+                <ul id="nav-menu">
                     <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
+                    <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
+                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                    <li><a href="{{ url_for('views.adicionar_produto') }}">Adicionar Produto</a></li>
+                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
+                    <li><a href="{{ url_for('views.perfil') }}">Perfil</a></li>
                     <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <div class="menu-overlay" id="menu-overlay"></div>
 
     <main class="container">
         <h1 class="title">Detalhes do Pet</h1>
@@ -38,5 +51,6 @@
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <script> menuMobile()</script>
 </body>
 </html>
