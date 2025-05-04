@@ -22,7 +22,7 @@
     <main class="container">
         <h1 class="title">Detalhes do Pet</h1>
         <section class="pet-details">
-            <img src="{{ url_for('static', filename=pet.imagem_url) }}" alt="{{ pet.nome }}" class="pet-image">
+            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ pet.nome }}">
             <h2>{{ pet.nome }}</h2>
             <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
             <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
