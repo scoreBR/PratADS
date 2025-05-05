@@ -379,6 +379,7 @@
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
 
@@ -766,5 +767,6 @@
     renderOnlineUsers();
     renderCommunityChat();
   </script>
+  <script>menuMobile()</script>
 </body>
 </html>

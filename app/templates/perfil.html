@@ -6,6 +6,7 @@
     <title>Perfil do Usuário - WePet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
     <header>
@@ -108,6 +109,6 @@
             .catch(error => console.error('Erro ao carregar os produtos:', error));
         });
     </script>
-    
+    <script>menuMobile()</script>
 </body>
 </html>
