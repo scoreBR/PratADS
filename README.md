@@ -30,7 +30,7 @@ Você pode acessar o sistema diretamente pelo link abaixo:
 
 ## 💡 Principais Funcionalidades
 - Cadastro e login de usuários;
-- Cadastro de pets com fotos, vídeos e informações detalhadas;
+- Cadastro de pets com fotos e informações detalhadas;
 - Filtros por localização, espécie, idade, raça e porte;
 - Chat entre usuários (doador/adotante e vendedor/comprador);
 - Anúncios de produtos com sistema de busca e filtros;
