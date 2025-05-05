@@ -28,8 +28,21 @@
     <main class="container">
         <section class="pets-list">
             <h2>Pets Disponíveis para Adoção</h2>
-            <div id="pets-container" class="pets-grid">
-                <!-- Os pets serão inseridos aqui pelo JavaScript -->
+            <div class="pets-grid">
+                {% if pets %}
+                    {% for pet in pets %}
+                        <div class="pet-card">
+                            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ pet.nome }}">
+                            <h3>{{ pet.nome }}</h3>
+                            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+                            <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
+                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                            <a href="{{ url_for('views.detalhes_pet', pet_id=pet.id) }}" class="btn">Ver Detalhes</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum pet disponível para adoção no momento.</p>
+                {% endif %}
             </div>
         </section>
     </main>
@@ -39,28 +52,5 @@
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/pets')
-            .then(response => response.json())
-            .then(pets => {
-                const petsContainer = document.getElementById('pets-container');
-                pets.forEach(pet => {
-                    const petCard = document.createElement('div');
-                    petCard.className = 'pet-card';
-                    petCard.innerHTML = `
-                        <h3>${pet.nome}</h3>
-                        <p><strong>Idade:</strong> ${pet.idade} anos</p>
-                        <p><strong>Tipo:</strong> ${pet.tipo}</p>
-                        <p><strong>Raça:</strong> ${pet.raca}</p>
-                        <a href="/pet/${pet.id}" class="btn">Ver Detalhes</a>
-                    `;
-                    petsContainer.appendChild(petCard);
-                });
-            })
-            .catch(error => console.error('Erro ao carregar os pets:', error));
-        });
-    </script>
 </body>
 </html>

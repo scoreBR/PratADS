@@ -18,12 +18,14 @@ views = Blueprint('views', __name__)
 @views.route('/')
 @login_required
 def AdotePet():
-    return render_template('AdotePet.html', user=current_user)
+    pets = Pet.query.all()  # Consulta todos os pets no banco de dados
+    return render_template('AdotePet.html', user=current_user, pets=pets)  # Envia os pets para o template
 
 @views.route('/loja')
 @login_required
 def Loja():
-    return render_template('Loja.html', user=current_user)
+    produtos = Produto.query.all()
+    return render_template('Loja.html', user=current_user, produtos=produtos)
 
 @views.route('/perfil')
 @login_required

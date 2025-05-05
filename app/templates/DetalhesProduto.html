@@ -21,7 +21,7 @@
 
     <main class="container">
         <section class="produto-details">
-            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
+            <img src="{{ url_for('static', filename=produto.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
             <h2>{{ produto.titulo }}</h2>
             <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
             <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
