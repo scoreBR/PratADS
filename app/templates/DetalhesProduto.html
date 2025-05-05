@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Produto</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/Loja.css') }}">
+    <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
     <header>
@@ -21,7 +22,7 @@
 
     <main class="container">
         <section class="produto-details">
-            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
+            <img src="{{ url_for('static', filename=produto.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
             <h2>{{ produto.titulo }}</h2>
             <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
             <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
@@ -34,5 +35,9 @@
             <p>&copy; 2025 WePet. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        menuMobile();
+    </script>
 </body>
 </html>

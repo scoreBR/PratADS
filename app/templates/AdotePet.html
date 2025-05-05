@@ -36,8 +36,24 @@
     <main class="container">
         <section class="pets-list">
             <h2>Pets Disponíveis para Adoção</h2>
-            <div id="pets-container" class="pets-grid">
-                <!-- Os pets serão inseridos aqui pelo JavaScript -->
+            <div class="pets-grid">
+                {% if pets %}
+                    {% for pet in pets %}
+                        <div class="pet-card">
+                            {% if pet.imagem_url %}
+                                <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ pet.nome }}">
+                            {% else %}
+                            {% endif %}
+                            <h3>{{ pet.nome }}</h3>
+                            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+                            <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
+                            <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                            <a href="{{ url_for('views.detalhes_pet', pet_id=pet.id) }}" class="btn">Ver Detalhes</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum pet disponível para adoção no momento.</p>
+                {% endif %}
             </div>
         </section>
     </main>
@@ -70,7 +86,7 @@
             .catch(error => console.error('Erro ao carregar os pets:', error));
         });
 
-        menuMobile()
+        menuMobile();
     </script>
 </body>
 </html>

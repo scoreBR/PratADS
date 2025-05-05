@@ -35,7 +35,23 @@
     <main class="container">
         <section class="produtos-list">
             <h2>Produtos para seu pet</h2>
-            <div id="produtos-container" class="produtos-grid"></div>
+            <div class="produtos-grid">
+                {% if produtos %}
+                    {% for produto in produtos %}
+                        <div class="produto-card">
+                            {% if produto.imagem_url %}
+                                <img src="{{ url_for('static', filename=produto.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
+                            {% else %}
+                            {% endif %}
+                            <h3>{{ produto.titulo }}</h3>
+                            <p><strong>Preço:</strong> R$ {{ "%.2f"|format(produto.preco) }}</p>
+                            <a href="{{ url_for('views.detalhes_produto', produto_id=produto.id) }}" class="btn">Ver Detalhes</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum produto disponível no momento.</p>
+                {% endif %}
+            </div>
         </section>
     </main>
 
@@ -46,26 +62,6 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/api/produtos')
-            .then(response => response.json())
-            .then(produtos => {
-                const produtosContainer = document.getElementById('produtos-container');
-                produtos.forEach(produto => {
-                    const produtoCard = document.createElement('div');
-                    produtoCard.className = 'produto-card';
-                    produtoCard.innerHTML = `
-                        <h3>${produto.titulo}</h3>
-                        <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
-                        <a href="/produto/${produto.id}" class="btn">Ver Detalhes</a>
-                    `;
-                    produtosContainer.appendChild(produtoCard);
-                });
-            })
-            .catch(error => console.error('Erro ao carregar os produtos:', error));
-        });
-
-
         menuMobile()
     </script>
 </body>
