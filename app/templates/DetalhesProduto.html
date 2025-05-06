@@ -10,17 +10,29 @@
 <body>
     <header>
         <div class="container">
-            <h1>Detalhes do Produto</h1>
+            <h1>🐾WePet</h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
-                <ul>
-                    <li><a href="{{ url_for('views.Loja') }}">Loja</a></li>
+                <ul id="nav-menu">
+                    <li><a href="{{ url_for('views.AdotePet') }}">Início</a></li>
+                    <li><a href="{{ url_for('views.adicionar_pet') }}">Adicionar Pet</a></li>
+                    <li><a href="{{ url_for('views.adicionar_produto') }}">Adicionar Produto</a></li>
+                    <li><a href="{{ url_for('views.Chat') }}">Chat</a></li>
+                    <li><a href="{{ url_for('views.perfil') }}">Perfil</a></li>
                     <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <div class="menu-overlay" id="menu-overlay"></div>
+
     <main class="container">
+        <h1 class="title">Detalhes do Produto</h1>
         <section class="produto-details">
             <img src="{{ url_for('static', filename=produto.imagem_url.lstrip('static/')) }}" alt="{{ produto.titulo }}">
             <h2>{{ produto.titulo }}</h2>
