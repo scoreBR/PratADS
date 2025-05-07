@@ -43,6 +43,9 @@
             <p><strong>Porte:</strong> {{ pet.porte }}</p>
             <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
             <p><strong>Vacinação:</strong> {{ pet.vacinacao or 'Não informado' }}</p>
+            <p><strong>Cadastrado por:</strong> {{ pet.doador.nome }} ({{ pet.doador.email }})</p>
+            <p><strong>Contato:</strong> {{ pet.doador.contato }}</p>
+            <button class="btn">Contato: {{ pet.doador.contato }}</button>
         </section>
     </main>
 

@@ -99,7 +99,8 @@ def adicionar_produto():
             descricao=descricao,
             preco=preco,
             categoria=categoria,
-            imagem_url=imagem_url
+            imagem_url=imagem_url,
+            usuario_id=current_user.id
         )
         db.session.add(novo_produto)
         db.session.commit()
@@ -175,3 +176,27 @@ def atualizar_descricao():
     else:
         flash('A descrição não pode estar vazia.', 'danger')
     return redirect(url_for('views.Perfil'))
+
+@views.route('/excluir_pet/<int:pet_id>', methods=['POST', 'GET'])
+@login_required
+def excluir_pet(pet_id):
+    pet = Pet.query.get_or_404(pet_id)
+    if pet.doador_id != current_user.id:
+        flash('Você não tem permissão para excluir este pet.', 'danger')
+        return redirect(url_for('views.perfil'))
+    db.session.delete(pet)
+    db.session.commit()
+    flash('Pet excluído com sucesso!', 'success')
+    return redirect(url_for('views.perfil'))
+
+@views.route('/excluir_produto/<int:produto_id>', methods=['POST', 'GET'])
+@login_required
+def excluir_produto(produto_id):
+    produto = Produto.query.get_or_404(produto_id)
+    if produto.usuario_id != current_user.id:
+        flash('Você não tem permissão para excluir este produto.', 'danger')
+        return redirect(url_for('views.perfil'))
+    db.session.delete(produto)
+    db.session.commit()
+    flash('Produto excluído com sucesso!', 'success')
+    return redirect(url_for('views.perfil'))

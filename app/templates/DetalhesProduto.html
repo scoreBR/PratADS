@@ -39,6 +39,9 @@
             <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
             <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
             <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
+            <p><strong>Cadastrado por:</strong> {{ produto.usuario.nome }} ({{ produto.usuario.email }})</p>
+            <p><strong>Contato:</strong> {{ produto.usuario.contato }}</p>
+            <button class="btn">Contato: {{ produto.usuario.contato }}</button>
         </section>
     </main>
 
