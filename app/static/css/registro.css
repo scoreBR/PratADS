@@ -129,7 +129,7 @@ nav ul li a:hover {
 }
 
 .btn:hover {
-  background-color: #21867a;
+  background-color: #236b42;
 }
 
 .auth-form p {
@@ -149,6 +149,7 @@ footer {
   text-align: center;
   padding: 15px 0;
   margin-top: auto;
+  height: 49px;
 }
 
 /* Responsividade */
