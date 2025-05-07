@@ -35,12 +35,12 @@ header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 11px 20px;
 }
 
 header h1 {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 /* Estilos para o menu de navegação */
@@ -160,7 +160,7 @@ header > div > nav > ul > li:nth-child(2) > a {
 }
 
 .btn:hover {
-  background-color: #21867a;
+  background-color: #236b42;
 }
 
 .auth-form p {
@@ -228,7 +228,7 @@ footer {
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
-    margin-left: 178px;
+    margin-left: 143px;
   }
 
   .container {

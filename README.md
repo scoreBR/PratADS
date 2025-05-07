@@ -1,5 +1,5 @@
 # Projeto de Prática Profissional em ADS
-# 🐾 WePet - Plataforma de Adoção e Doação de Pets
+# We❤️Pet - Plataforma de Adoção e Doação de Pets
 
 ## 👥 Integrantes do Projeto
 - Leonardo de Castro Ferreira 

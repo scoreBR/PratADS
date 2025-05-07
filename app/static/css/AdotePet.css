@@ -118,6 +118,7 @@ footer {
   text-align: center;
   padding: 15px 0;
   margin-top: auto;
+  height: 49px;
 }
 
 /* Imagem */
@@ -205,6 +206,10 @@ body main section img {
   font-weight: 600;
 }
 
+div.pet-card p:nth-child(5) {
+  margin-bottom: 3%;
+}
+
 .pet-card .btn {
   background-color: #2e8b57;
   color: white;
@@ -218,7 +223,7 @@ body main section img {
   text-decoration: none;
   text-align: center;
   display: block;
-  width: 80%;
+  width: 94%;
   margin-top: auto;
 }
 

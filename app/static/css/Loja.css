@@ -21,8 +21,6 @@ body {
 }
 
 /* Cabeçalho */
-
-
 header {
   position: sticky;
   top: 0;
@@ -91,137 +89,6 @@ nav ul li a {
   display: block;
 }
 
-
-
-/* Seção de Produtos */
-.produtos-list {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.produtos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.produto-card {
-  background: #e9c46a;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
-}
-
-.produto-card h3 {
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.produto-card p {
-  font-size: 1rem;
-  color: #555;
-  margin: 10px 0;
-}
-
-.produto-card:hover {
-  transform: scale(1.05);
-}
-
-.produto-card strong {
-  font-weight: bold;
-}
-
-body > main > section > img {
-  width: 100%;
-}
-
-/* Rodapé */
-footer {
-  background-color: #282a35;
-  color: #fff;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: auto;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  header .container {
-    flex-direction: row;
-    text-align: center;
-  }
-
-  nav ul {
-    margin-top: 0px;
-    padding: 0;
-    text-align: left;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .produtos-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  }
-
-  .produto-card {
-    padding: 15px;
-    height: auto;
-  }
-
-  .menu-toggle {
-    display: flex;
-    margin-left: 160px;
-  }
-
-  nav ul {
-    position: fixed;
-    flex-direction: column;
-    background-color: #2e8b57;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    padding-top: 80px;
-    transition: right 0.3s ease;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    align-items: flex-start;
-  }
-
-  nav ul.active {
-    right: 0;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-    width: 100%;
-    padding: 10px 20px;
-  }
-
-  /* Animação do botão hambúrguer */
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-}
-
-
-/* Estilos para a seção de Produtos para seu pet */
 .produtos-list {
   margin: 15px auto;
   padding: 30px;
@@ -249,9 +116,9 @@ footer {
   margin: 15px auto 0;
 }
 
-.produtos-grid {
+.produtos-grid { 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); 
   gap: 25px;
   margin-top: 25px;
 }
@@ -266,39 +133,47 @@ footer {
   flex-direction: column;
   height: 100%;
   border: 1px solid #eee;
-  padding: 0;
+  padding: 0; 
 }
 
-.produto-card:hover {
-  transform: translateY(-3px);
+.produto-card:hover { 
+  transform: translateY(-3px); 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.produto-card img {
+.produto-card strong {
+  font-weight: bold;
+}
+
+body > main > section > img { 
   width: 100%;
-  height: 200px;
+}
+
+.produto-card img { 
+  width: 100%;
+  height: 200px; 
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.produto-card h3 {
-  font-size: 20px;
+.produto-card h3 { 
+  font-size: 20px; 
   color: #333;
   margin: 15px 0 10px;
   padding: 0 15px;
 }
 
-.produto-card p {
-  color: #666;
-  margin: 8px 0;
+.produto-card p { 
+  color: #666;  
+  margin: 8px 0 3%; 
   padding: 0 15px;
-  font-size: 16px;
+  font-size: 16px; 
 }
 
-.produto-card p strong {
+.produto-card p strong { 
   color: #444;
-  font-weight: 600;
+  font-weight: 600; 
 }
 
 .produto-card .btn {
@@ -306,20 +181,30 @@ footer {
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 15px auto;
+  margin: 15px auto; 
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-decoration: none;
-  text-align: center;
+  text-align: center; 
   display: block;
-  width: 80%;
-  margin-top: auto;
+  width: 94%; 
+  margin-top: auto; 
 }
 
 .produto-card .btn:hover {
   background-color: #236b42;
+}
+
+/* Rodapé */
+footer {
+  background-color: #282a35;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: auto;
+  height: 49px;
 }
 
 /* Seção Product Details */
@@ -344,15 +229,69 @@ h1.title {
 }
 
 @media (max-width: 768px) {
-  .produtos-grid {
-    grid-template-columns: 1fr;
+  header .container {
+    flex-direction: row; 
+    text-align: center;
   }
-  
-  .produtos-list {
+
+  .menu-toggle {
+    display: flex; 
+    margin-left: 160px; 
+  }
+
+
+  nav ul {
+    margin-top: 0px; 
+    text-align: left; 
+    position: fixed;
+    flex-direction: column;
+    background-color: #2e8b57;
+    top: 0;
+    right: -100%; 
+    width: 70%;
+    height: 100vh;
+    padding: 80px 0 0 0; 
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    align-items: flex-start; 
+  }
+
+  nav ul.active {
+    right: 0;
+  }
+
+  nav ul li {
+    margin: 10px 0; 
+    width: 100%;    
+    padding: 10px 20px; 
+  }
+
+  .produto-card {
+    padding: 15px;
+    height: auto;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .produtos-grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .produtos-list { 
     padding: 20px;
   }
-  
-  .produto-card img {
+
+  .produto-card img { 
     height: 180px;
   }
 }

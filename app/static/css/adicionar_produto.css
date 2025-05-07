@@ -120,16 +120,18 @@ input {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #2a9d8f;
+  background-color: #2e8b57;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
 }
 
 .btn:hover {
-  background-color: #21867a;
+  background-color: #236b42;
 }
 
 /* Footer */
@@ -137,10 +139,10 @@ footer {
   background-color: #282a35;
   color: white;
   text-align: center;
-  padding: 15px 0;
   margin-top: auto;
   width: 100%;
   position: relative;
+  height: 49px;
 }
 
 /* Responsividade */
