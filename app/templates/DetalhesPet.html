@@ -43,9 +43,27 @@
             <p><strong>Porte:</strong> {{ pet.porte }}</p>
             <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
             <p><strong>Vacinação:</strong> {{ pet.vacinacao or 'Não informado' }}</p>
-            <p><strong>Cadastrado por:</strong> {{ pet.doador.nome }} ({{ pet.doador.email }})</p>
-            <p><strong>Contato:</strong> {{ pet.doador.contato }}</p>
-            <button class="btn">Contato: {{ pet.doador.contato }}</button>
+            <!-- Mostrar a imagem do doador (se existir) -->
+            {% if pet.doador.imagem_url %}
+            <div class="doador-info">
+                <h3>Informações do Doador</h3>
+                <img src="{{ url_for('static', filename=pet.doador.imagem_url.lstrip('static/')) }}"
+                    alt="Foto de {{ pet.doador.nome }}" class="doador-imagem">
+                <p><strong>Nome:</strong> {{ pet.doador.nome }}</p>
+                <p><strong>Cidade:</strong> {{ pet.doador.cidade or 'Não informado' }}</p>
+            </div>
+            {% endif %}
+            {% if pet.doador.contato %}
+            <p>
+                <a href="https://wa.me/55{{ pet.doador.contato|replace(' ', '')|replace('-', '')|replace('(', '')|replace(')', '') }}"
+                    target="_blank" class="whatsapp-button" aria-label="Conversar no WhatsApp">
+                 
+                    Clique para conversar
+                </a>
+            </p>
+            {% else %}
+            <p><strong>Contato:</strong> Não informado</p>
+            {% endif %}
         </section>
     </main>
 
