@@ -39,7 +39,7 @@
                 <img src="{{ url_for('static', filename=user.imagem_url.lstrip('static/')) }}" class="perfil-foto">
                 <h2>{{ user.nome }}</h2>
                 <p><strong>Cidade:</strong> {{ user.cidade }}</p>
-                <button><strong>Contato:</strong> {{ user.contato }}</button>
+                <p><strong>Contato:</strong> {{ user.contato }}</p>
                 <form method="POST" action="{{ url_for('views.atualizar_descricao') }}">
                     <textarea class="perfil-descricao" name="descricao" placeholder="Descrição">{{ user.descricao }}</textarea>
                     <button type="submit" class="btn">Salvar</button>
@@ -53,10 +53,10 @@
                 {% for pet in user.pets %}
                     <div class="pet-card">
                         <img src="{{ pet.imagem_url }}" alt="{{ pet.nome }}">
-                        <button class="btn" onclick="location.href='{{ url_for('views.excluir_pet', pet_id=pet.id) }}'">Excluir</button>
+                        <button class="btn btn-delete" onclick="location.href='{{ url_for('views.excluir_pet', pet_id=pet.id) }}'">Excluir</button>
                     </div>
                 {% endfor %}
-                <div class="pet-card add-card"><a href="{{ url_for('views.adicionar_pet') }}"></a>+</div>
+                <div class="pet-card add-card"><a href="{{ url_for('views.adicionar_pet') }}">+</a></div>
             </div>
         </section>
 
@@ -66,10 +66,10 @@
                 {% for produto in user.produtos %}
                     <div class="produto-card">
                         <img src="{{ produto.imagem_url }}" alt="{{ produto.titulo }}">
-                        <button class="btn" onclick="location.href='{{ url_for('views.excluir_produto', produto_id=produto.id) }}'">Excluir</button>
+                        <button class="btn btn-delete" onclick="location.href='{{ url_for('views.excluir_produto', produto_id=produto.id) }}'">Excluir</button>
                     </div>
                 {% endfor %}
-                <div class="produto-card add-card"><a href="{{ url_for('views.adicionar_produto') }}"></a>+</div>
+                <div class="produto-card add-card"><a href="{{ url_for('views.adicionar_produto') }}">+</a></div>
             </div>
         </section>
     </main>

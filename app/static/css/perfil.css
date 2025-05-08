@@ -17,7 +17,7 @@ body {
 .container {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 15px;
 }
 
 /* Cabeçalho */
@@ -96,7 +96,7 @@ nav ul li a {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .perfil-foto {
@@ -116,7 +116,7 @@ nav ul li a {
 }
 
 .btn {
-  background-color: #2a9d8f;
+  background-color: #2e8b57;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -124,10 +124,11 @@ nav ul li a {
   cursor: pointer;
   font-size: 16px;
   margin: 10px 5px;
+  font-weight: 600;
 }
 
 .btn:hover {
-  background-color: #21867a;
+  background-color: #236b42;
 }
 
 /* Seção de Pets e Produtos */
@@ -147,10 +148,10 @@ nav ul li a {
 
 .pet-card,
 .produto-card {
-  background: #e9c46a;
+  background: #fff;
   padding: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   text-align: center;
   transition: transform 0.2s ease-in-out;
   display: flex;
@@ -167,7 +168,7 @@ nav ul li a {
 }
 
 .add-card {
-  background-color: #2a9d8f;
+  background-color: #2e8b57;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
@@ -179,7 +180,14 @@ nav ul li a {
 }
 
 .add-card:hover {
-  background-color: #21867a;
+  background-color: #236b42;
+}
+
+section.pets-list div div a,
+section.produtos-list div div a {
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
 }
 
 /* Rodapé */
@@ -233,6 +241,12 @@ footer {
     padding: 10px 20px;
   }
 
+  .pet-card,
+  .produto-card {
+    flex-direction: column;
+    height: 100%;
+  }
+
   /* Animação do botão hambúrguer */
   .menu-toggle.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
@@ -245,4 +259,17 @@ footer {
   .menu-toggle.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
   }
+
+  .add-card {
+    padding: 18px;
+  }
+}
+
+.btn-delete {
+  background-color: #ff1d0b;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #ff3b1f;
 }
