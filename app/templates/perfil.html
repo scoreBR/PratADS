@@ -36,7 +36,11 @@
     <main class="container">
         <section class="usuario-perfil">
             <div class="perfil-info">
-                <img src="{{ url_for('static', filename=user.imagem_url.lstrip('static/')) }}" class="perfil-foto">
+                {% if user.imagem_url %}
+                    <img src="{{ url_for('static', filename=user.imagem_url.lstrip('static/')) }}" class="perfil-foto">
+                {% else %}
+                    <img src="{{ url_for('static', filename='img/default-profile.png') }}" class="perfil-foto">
+                {% endif %}
                 <h2>{{ user.nome }}</h2>
                 <p><strong>Cidade:</strong> {{ user.cidade }}</p>
                 <p><strong>Contato:</strong> {{ user.contato }}</p>
@@ -52,7 +56,11 @@
             <div class="pets-grid">
                 {% for pet in user.pets %}
                     <div class="pet-card">
-                        <img src="{{ pet.imagem_url }}" alt="{{ pet.nome }}">
+                        {% if pet.imagem_url %}
+                            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) if pet.imagem_url.startswith('static/') else pet.imagem_url }}" alt="{{ pet.nome }}">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/default-img.png') }}" alt="{{ pet.nome }}">
+                        {% endif %}
                         <button class="btn btn-delete" onclick="location.href='{{ url_for('views.excluir_pet', pet_id=pet.id) }}'">Excluir</button>
                     </div>
                 {% endfor %}
@@ -65,7 +73,11 @@
             <div class="produtos-grid">
                 {% for produto in user.produtos %}
                     <div class="produto-card">
-                        <img src="{{ produto.imagem_url }}" alt="{{ produto.titulo }}">
+                        {% if produto.imagem_url %}
+                            <img src="{{ url_for('static', filename=produto.imagem_url.lstrip('static/')) if produto.imagem_url.startswith('static/') else produto.imagem_url }}" alt="{{ produto.titulo }}">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='img/default-img.png') }}" alt="{{ produto.titulo }}">
+                        {% endif %}
                         <button class="btn btn-delete" onclick="location.href='{{ url_for('views.excluir_produto', produto_id=produto.id) }}'">Excluir</button>
                     </div>
                 {% endfor %}
@@ -87,18 +99,20 @@
             .then(response => response.json())
             .then(pets => {
                 const petsContainer = document.getElementById('pets-container');
-                pets.forEach(pet => {
-                    const petCard = document.createElement('div');
-                    petCard.className = 'pet-card';
-                    petCard.innerHTML = `
-                        <h3>${pet.nome}</h3>
-                        <p><strong>Idade:</strong> ${pet.idade} anos</p>
-                        <p><strong>Tipo:</strong> ${pet.tipo}</p>
-                        <p><strong>Raça:</strong> ${pet.raca}</p>
-                        <a href="/pet/${pet.id}" class="btn">Ver Detalhes</a>
-                    `;
-                    petsContainer.appendChild(petCard);
-                });
+                if (petsContainer) {
+                    pets.forEach(pet => {
+                        const petCard = document.createElement('div');
+                        petCard.className = 'pet-card';
+                        petCard.innerHTML = `
+                            <h3>${pet.nome}</h3>
+                            <p><strong>Idade:</strong> ${pet.idade} anos</p>
+                            <p><strong>Tipo:</strong> ${pet.tipo}</p>
+                            <p><strong>Raça:</strong> ${pet.raca}</p>
+                            <a href="/pet/${pet.id}" class="btn">Ver Detalhes</a>
+                        `;
+                        petsContainer.appendChild(petCard);
+                    });
+                }
             })
             .catch(error => console.error('Erro ao carregar os pets:', error));
     
@@ -107,17 +121,19 @@
             .then(response => response.json())
             .then(produtos => {
                 const produtosContainer = document.getElementById('produtos-container');
-                produtos.forEach(produto => {
-                    const produtoCard = document.createElement('div');
-                    produtoCard.className = 'produto-card';
-                    produtoCard.innerHTML = `
-                        <h3>${produto.titulo}</h3>
-                        <p><strong>Descrição:</strong> ${produto.descricao}</p>
-                        <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
-                        <a href="/produto/${produto.id}" class="btn">Ver Detalhes</a>
-                    `;
-                    produtosContainer.appendChild(produtoCard);
-                });
+                if (produtosContainer) {
+                    produtos.forEach(produto => {
+                        const produtoCard = document.createElement('div');
+                        produtoCard.className = 'produto-card';
+                        produtoCard.innerHTML = `
+                            <h3>${produto.titulo}</h3>
+                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                            <a href="/produto/${produto.id}" class="btn">Ver Detalhes</a>
+                        `;
+                        produtosContainer.appendChild(produtoCard);
+                    });
+                }
             })
             .catch(error => console.error('Erro ao carregar os produtos:', error));
         });

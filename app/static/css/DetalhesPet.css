@@ -1,0 +1,110 @@
+/* Seção de detalhes em modo flex */
+.pet-details {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 30px 0;
+    flex-wrap: wrap;
+  }
+  
+  /* Cards do pet e doador */
+  .card-pet,
+  .card-doador {
+    flex: 1 1 45%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: none;
+    padding: 20px;
+    max-height: 500px;
+  }
+  
+  /* Scroll interno se necessário */
+  .card-pet::-webkit-scrollbar,
+  .card-doador::-webkit-scrollbar {
+    width: 6px;
+  }
+  .card-pet::-webkit-scrollbar-thumb,
+  .card-doador::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Conteúdo do card do pet */
+  .card-pet img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .card-pet h2,
+  .card-doador h3 {
+    color: #2e8b57;
+    margin-bottom: 15px;
+  }
+  
+  .card-pet p,
+  .card-doador p {
+    margin: 8px 0;
+    color: #444;
+  }
+  
+  /* Doador imagem */
+  .doador-imagem {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #2e8b57;
+  }
+  
+  /* Botão WhatsApp */
+  .whatsapp-button {
+    display: inline-block;
+    background-color: #25D366;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 15px 0;
+    transition: background-color 0.3s;
+  }
+  
+  .whatsapp-button:hover {
+    background-color: #128C7E;
+  }
+
+  .linha-vertical {
+    border-left: 2px solid;
+    box-sizing: border-box;
+   }
+  
+  
+  /* Responsivo: mobile em coluna */
+  @media (max-width: 768px) {
+    .pet-details {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .card-pet,
+    .card-doador {
+      flex: 1 1 100%;
+      max-height: none;
+      overflow: visible;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .whatsapp-button {
+      width: 100%;
+      text-align: center;
+    }
+
+    .linha-vertical {
+        display: none;
+    }
+  }

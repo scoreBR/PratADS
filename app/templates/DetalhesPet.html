@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Pet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/AdotePet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/DetalhesPet.css') }}">
     <script src="{{ url_for('static', filename='js/menu-mobile.js') }}"></script>
 </head>
 <body>
@@ -35,37 +36,48 @@
     <main class="container">
         <h1 class="title">Detalhes do Pet</h1>
         <section class="pet-details">
-            <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ pet.nome }}">
-            <h2>{{ pet.nome }}</h2>
-            <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
-            <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
-            <p><strong>Raça:</strong> {{ pet.raca }}</p>
-            <p><strong>Porte:</strong> {{ pet.porte }}</p>
-            <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
-            <p><strong>Vacinação:</strong> {{ pet.vacinacao or 'Não informado' }}</p>
-            <!-- Mostrar a imagem do doador (se existir) -->
-            {% if pet.doador.imagem_url %}
-            <div class="doador-info">
+            
+            <!-- Card do Pet -->
+            <div class="card-pet">
+                {% if pet.imagem_url %}
+                    <img src="{{ url_for('static', filename=pet.imagem_url.lstrip('static/')) }}" alt="{{ pet.nome }}">
+                {% else %}
+                    <img src="{{ url_for('static', filename='img/default-img.png') }}" alt="{{ pet.nome }}">
+                {% endif %}
+                <h2>{{ pet.nome }}</h2>
+                <p><strong>Idade:</strong> {{ pet.idade }} anos</p>
+                <p><strong>Tipo:</strong> {{ pet.tipo }}</p>
+                <p><strong>Raça:</strong> {{ pet.raca }}</p>
+                <p><strong>Porte:</strong> {{ pet.porte }}</p>
+                <p><strong>Localização:</strong> {{ pet.localizacao }}</p>
+                <p><strong>Vacinação:</strong> {{ pet.vacinacao or 'Não informado' }}</p>
+            </div>
+            <div class="box linha-vertical"></div>
+            <!-- Card do Doador -->
+            <div class="card-doador">
                 <h3>Informações do Doador</h3>
-                <img src="{{ url_for('static', filename=pet.doador.imagem_url.lstrip('static/')) }}"
-                    alt="Foto de {{ pet.doador.nome }}" class="doador-imagem">
+                {% if pet.doador.imagem_url %}
+                    <img src="{{ url_for('static', filename=pet.doador.imagem_url.lstrip('static/')) }}"
+                         alt="Foto de {{ pet.doador.nome }}" class="doador-imagem">
+                {% endif %}
                 <p><strong>Nome:</strong> {{ pet.doador.nome }}</p>
                 <p><strong>Cidade:</strong> {{ pet.doador.cidade or 'Não informado' }}</p>
-            </div>
-            {% endif %}
-            {% if pet.doador.contato %}
-            <p>
-                <a href="https://wa.me/55{{ pet.doador.contato|replace(' ', '')|replace('-', '')|replace('(', '')|replace(')', '') }}"
-                    target="_blank" class="whatsapp-button" aria-label="Conversar no WhatsApp">
-                 
+    
+                {% if pet.doador.contato %}
+                {% set mensagem = "Olá! Encontrei seu contato através do aplicativo We♥Pet e estou interessado(a) na adoção do " ~ pet.nome ~ ". Poderia me passar mais informações?" %}
+                <a href="https://wa.me/55{{ pet.doador.contato|replace(' ', '')|replace('-', '')|replace('(', '')|replace(')', '') }}?text={{ mensagem|urlencode }}"
+                   target="_blank" class="whatsapp-button" aria-label="Conversar no WhatsApp">
                     Clique para conversar
                 </a>
-            </p>
-            {% else %}
-            <p><strong>Contato:</strong> Não informado</p>
-            {% endif %}
+                
+                {% else %}
+                    <p><strong>Contato:</strong> Não informado</p>
+                {% endif %}
+            </div>
+    
         </section>
     </main>
+    
 
     <footer>
         <div class="container">
